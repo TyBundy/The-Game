@@ -33,8 +33,6 @@ class Card:
         x, y = self.x * Globals.WINDOW_WIDTH / Globals.WIDTH, self.y * Globals.WINDOW_HEIGHT / Globals.HEIGHT
         width, height = self.width * Globals.WINDOW_WIDTH / Globals.WIDTH, self.height * Globals.WINDOW_HEIGHT / Globals.HEIGHT
 
-        print(self.value, int(x), int(y), int(width), int(height), Globals.mouse_position, Globals.WINDOW_WIDTH / Globals.WIDTH)
-
         if x <= Globals.mouse_position[0] <= x + width and y <= Globals.mouse_position[1] <= y + height:
             return True
         return False
