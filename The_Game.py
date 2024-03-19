@@ -104,25 +104,26 @@ def Main():
                 Globals.dragging_card = None
                 update_cards()
 
-
         draw.draw()
         Globals.clock.tick(Globals.FPS)
 
-
+# Draws a card from the draw pile and returns it
 def draw_card():
     card = random.choice(Globals.draw_pile)
     Globals.draw_pile.remove(card)
     return card
 
+# Updates the locations of the cards in the player's hand
 def update_cards():
     cards = Globals.player_cards
     sort_cards()
-    
+
     offset = Globals.WIDTH / 2- (230 * len(cards) / 2)
     for i in range(len(cards)):
         cards[i].x, cards[i].y = offset, 800
         offset += 230
 
+# Sorts the player's hand
 def sort_cards():
     cards = Globals.player_cards
     n = len(cards)
