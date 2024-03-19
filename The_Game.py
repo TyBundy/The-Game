@@ -25,10 +25,14 @@ pyg.display.set_caption("The Game")
 def Main():
     os.system("cls")
 
+    # Initialize the draw pile
     for i in range(2, 100):
         Globals.draw_pile += [i]
 
+    # Initilize the playable piles
     Globals.current_piles += [Card((Globals.WIDTH/2 - 725, 50), (250, 400), 1), Card((Globals.WIDTH/2 - 325, 50), (250, 400), 1), Card((Globals.WIDTH/2 + 75, 50), (250, 400), 100), Card((Globals.WIDTH/2 + 475, 50), (250, 400), 100)]
+
+    # Initialize the player's hand
     for i in range(8):
         card = draw_card()
         Globals.player_cards += [Card((0, 0), (200, 400), card, True)]
@@ -54,7 +58,7 @@ def Main():
         # Update mouse position
         Globals.mouse_position = pyg.mouse.get_pos()
         if Globals.dragging_card is not None:
-            Globals.dragging_card.x = Globals.mouse_position[0] - Globals.dragging_card.offset[0]
+            Globals.dragging_card.x = (Globals.mouse_position[0] - Globals.dragging_card.offset[0]) 
             Globals.dragging_card.y = Globals.mouse_position[1] - Globals.dragging_card.offset[1]
 
         for event in pyg.event.get():
@@ -82,7 +86,7 @@ def Main():
                         Globals.dragging_card = card
                         card.offset = (Globals.mouse_position[0] - card.x, Globals.mouse_position[1] - card.y)
 
-            elif event.type == pyg.MOUSEBUTTONUP:
+            elif event.type == pyg.MOUSEBUTTONUP and Globals.dragging_card is not None:
 
                 # Check the four piles
                 for i in range(len(Globals.current_piles)):
@@ -101,6 +105,7 @@ def Main():
                             Globals.player_cards.remove(Globals.dragging_card)
                             played_cards += 1
 
+                Globals.dragging_card.offset = [0, 0]
                 Globals.dragging_card = None
                 update_cards()
 

@@ -16,6 +16,7 @@ class Card:
         self.highlight = highlight
 
     def draw(self):
+        """Draws the card object"""
         x, y = self.x, self.y
         width, height = self.width, self.height
         if self.check_collision() and self.highlight:
@@ -30,6 +31,7 @@ class Card:
 
 
     def check_collision(self):
+        """Returns a true or false value based on if the mouse is colliding with the card"""
         x, y = self.x * Globals.WINDOW_WIDTH / Globals.WIDTH, self.y * Globals.WINDOW_HEIGHT / Globals.HEIGHT
         width, height = self.width * Globals.WINDOW_WIDTH / Globals.WIDTH, self.height * Globals.WINDOW_HEIGHT / Globals.HEIGHT
 
